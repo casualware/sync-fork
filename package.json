@@ -2,7 +2,7 @@
   "name": "@casualware/sync-fork",
   "version": "1.0.0",
   "description": "A GitHub action that can sync a fork with its upstream repository",
-  "main": "dist/index.js",
+  "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
