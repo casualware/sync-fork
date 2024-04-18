@@ -33,4 +33,4 @@ outputs:
     description: 'The SHA of the commit that was created after the PR was merged.'
 runs:
   using: 'node20'
-  main: 'dist/index.js'
+  main: 'dist/main.js'
