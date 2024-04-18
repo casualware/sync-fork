@@ -31132,6 +31132,7 @@ async function run() {
                 state_reason: 'not_planned',
             });
         }
+        core.info(`Creating pull request...`);
         const pr = await octokit.rest.pulls.create({
             owner: repoOwner,
             repo: repoName,
@@ -31189,6 +31190,7 @@ async function run() {
         core.info('Done.');
     }
     catch (err) {
+        core.error(err);
         core.setFailed(err.message);
     }
 }
