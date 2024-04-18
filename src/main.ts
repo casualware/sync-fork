@@ -1,5 +1,5 @@
-import * as core from '@actions/core';
-import github from '@actions/github';
+const core: typeof import('@actions/core') = require('@actions/core');
+const github: typeof import('@actions/github') = require('@actions/github');
 const token = core.getInput('token', { required: true });
 
 async function run() {
