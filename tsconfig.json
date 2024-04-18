@@ -13,6 +13,7 @@
         "experimentalDecorators": true,
         "typeRoots": ["node_modules/@types", "./typings"],
         "strict": true,
+        "noEmit": true
     },
     "files": [
         "./src/main.ts"

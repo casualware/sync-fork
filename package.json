@@ -4,7 +4,7 @@
   "description": "A GitHub action that can sync a fork with its upstream repository",
   "main": "dist/main.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && esbuild src/main.ts --bundle --platform=node --outfile=dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@types/node": "20.12.7",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "esbuild": "^0.20.2"
   }
 }
