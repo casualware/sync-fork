@@ -31082,6 +31082,7 @@ var __webpack_exports__ = {};
 var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+const request_error_1 = __nccwpck_require__(537);
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
 const token = core.getInput('token', { required: true });
@@ -31190,7 +31191,16 @@ async function run() {
         core.info('Done.');
     }
     catch (err) {
-        core.error(err);
+        if (err instanceof request_error_1.RequestError) {
+            core.error(`RequestError: ${err.status} ${err.message}`);
+            core.info(`Response Data: ${JSON.stringify(err.response?.data, null, 2)}`);
+        }
+        else if (err instanceof Error) {
+            core.error(`Error: ${err.message}`);
+        }
+        else {
+            core.error(err);
+        }
         core.setFailed(err.message);
     }
 }

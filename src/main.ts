@@ -1,3 +1,5 @@
+import { RequestError } from '@octokit/request-error';
+
 const core: typeof import('@actions/core') = require('@actions/core');
 const github: typeof import('@actions/github') = require('@actions/github');
 const token = core.getInput('token', { required: true });
@@ -121,7 +123,14 @@ async function run() {
 
         core.info('Done.');
     } catch(err) {
-        core.error(err as Error);
+        if (err instanceof RequestError) {
+            core.error(`RequestError: ${err.status} ${err.message}`);
+            core.info(`Response Data: ${JSON.stringify(err.response?.data, null, 2)}`);
+        } else if (err instanceof Error) {
+            core.error(`Error: ${err.message}`);
+        } else {
+            core.error(err as string);
+        }
         core.setFailed((err as any).message);
     }
 }
