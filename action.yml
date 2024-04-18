@@ -1,0 +1,36 @@
+name: 'Sync Fork'
+description: 'Sync a fork with its upstream repository'
+inputs:
+  upstream:  # The upstream repository
+    description: 'The upstream repository'
+    required: true
+  upstreamBranch: # The upstream branch to sync
+    description: 'The branch to sync'
+    required: true
+  mergeMethod:
+    description: 'The merge method to use'
+    default: 'merge'
+  token:
+    description: 'Token for the github API'
+    required: false
+    default: ${{ github.token }}
+  label:
+    description: 'The label that should be added to sync pull requests'
+    required: false
+    default: 'fork:sync'
+  autoMerge:
+    description: 'Whether the pull request should automatically be merged'
+    required: false
+    default: false
+  mergeAttemptCount:
+    description: 'The number of times that merges should be attempted.'
+    required: false
+    default: 10
+outputs:
+  pullRequestNumber:
+    description: 'The ID number of the PR that was created.'
+  sha:
+    description: 'The SHA of the commit that was created after the PR was merged.'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
