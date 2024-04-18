@@ -57,6 +57,8 @@ async function run() {
             });
         }
 
+        core.info(`Creating pull request...`);
+
         const pr = await octokit.rest.pulls.create({
             owner: repoOwner,
             repo: repoName,
@@ -119,6 +121,7 @@ async function run() {
 
         core.info('Done.');
     } catch(err) {
+        core.error(err as Error);
         core.setFailed((err as any).message);
     }
 }
